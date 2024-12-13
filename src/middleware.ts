@@ -4,7 +4,11 @@ export async function middleware(req: NextRequest) {
   const refreshToken = req.cookies.get("refreshToken");
 
   const publicPaths = ["/signin"];
+  const privatePaths = ["/"];
 
+  // if (privatePaths.includes(req.nextUrl.pathname) && refreshToken) {
+  //   return NextResponse.redirect(new URL("/", req.url));
+  // }
   const isProtectedPage = !publicPaths.includes(req.nextUrl.pathname);
 
   if ((isProtectedPage || req.nextUrl.pathname === "/") && !refreshToken) {

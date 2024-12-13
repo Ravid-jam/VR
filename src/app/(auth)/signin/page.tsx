@@ -38,8 +38,8 @@ export default function SignIn() {
         Cookies.set("refreshToken", response.data.token, { expires: 1 });
         localStorage.setItem("adminId", response.data.user._id);
         setLoading(false);
-        Toast.show("Logged in successfully", "success");
         router.push("/");
+        Toast.show("Logged in successfully", "success");
       } else {
         Toast.show("Invalid email or password", "error");
       }
