@@ -1,11 +1,5 @@
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import HomePage from "./(hisabkitab)/home/page";
 
 export default function Home() {
-  return (
-    <>
-      <DefaultLayout>
-        <h1>Hello how are you ?</h1>
-      </DefaultLayout>
-    </>
-  );
+  return <HomePage />;
 }

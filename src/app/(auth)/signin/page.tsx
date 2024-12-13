@@ -38,7 +38,7 @@ export default function SignIn() {
         Cookies.set("refreshToken", response.data.token, { expires: 1 });
         localStorage.setItem("adminId", response.data.user._id);
         setLoading(false);
-        router.push("/");
+        router.push("/home");
         Toast.show("Logged in successfully", "success");
       } else {
         Toast.show("Invalid email or password", "error");
