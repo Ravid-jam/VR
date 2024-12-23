@@ -33,6 +33,7 @@ export default function AddUpdatestock(
 ) {
   const router = useRouter();
   const { id } = useParams();
+  console.log(id);
   const {
     control,
     handleSubmit,
@@ -47,8 +48,8 @@ export default function AddUpdatestock(
 
   const onSubmit = async (data: any) => {
     try {
-      if (updateId) {
-        const res = await updateStock(updateId, data);
+      if (objStock.updateId) {
+        const res = await updateStock(objStock.updateId, data);
         if (res.data) {
           Toast.show("Stock updated successfully", "success");
           router.push("/merchant");
@@ -66,10 +67,10 @@ export default function AddUpdatestock(
   };
   useEffect(() => {
     reset({
-      merchantId: objStock?.merchantId,
-      name: objStock?.name,
-      quantity: objStock?.quantity,
-      price: objStock?.price,
+      merchantId: objStock?.objStock?.merchantId,
+      name: objStock?.objStock?.name,
+      quantity: objStock?.objStock?.quantity,
+      price: objStock?.objStock?.price,
     });
   }, [objStock, reset]);
 
@@ -78,11 +79,10 @@ export default function AddUpdatestock(
       merchantId: id.toString(),
     });
   }, [id, reset]);
-
   return (
     <div>
       <h1 className="mb-3 block text-2xl font-bold text-black dark:text-white">
-        {headingName ? headingName : "Add Stock"}
+        {objStock.headingName ? objStock.headingName : "Add Stock"}
       </h1>
       <form
         onSubmit={handleSubmit(onSubmit)}

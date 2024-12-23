@@ -10,8 +10,23 @@ import {
 } from "@/components/services/stockes.service";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import Swal from "sweetalert2";
+
+interface RowData {
+  _id: string;
+  name: string;
+  date: string; // Assuming date is a string; adjust as needed.
+  quantity: number;
+  price: number;
+  totalStockPrice: number;
+}
+
+interface ColumnDefinition<T> {
+  header: string;
+  accessor: (row: T) => ReactNode;
+  className?: string;
+}
 
 export default function MerchantWiseStockList({ params }: { params: any }) {
   const [searchStock, setSearchStock] = useState("");
@@ -23,44 +38,51 @@ export default function MerchantWiseStockList({ params }: { params: any }) {
     queryFn: async () => await stockMerchantWiseList(params.id),
   });
 
-  const columns = [
+  const columns: ColumnDefinition<RowData>[] = [
     {
       header: "Design",
-      accessor: (row: any) => (
-        <h5 className="font-medium text-black dark:text-white">{row.name}</h5>
+      accessor: (row) => (
+        <h5 className="font-medium text-black dark:text-white">
+          {typeof row.name === "string" ? row.name : JSON.stringify(row.name)}
+        </h5>
       ),
       className: "min-w-[100px]",
     },
     {
       header: "Date",
-      accessor: (row: any) => (
-        <h5 className=" text-black dark:text-white">{formatDate(row.date)}</h5>
+      accessor: (row) => (
+        <h5 className="text-black dark:text-white">{formatDate(row.date)}</h5>
       ),
       className: "min-w-[150px]",
     },
     {
       header: "Quantity",
-      accessor: "quantity",
+      accessor: (row) => (
+        <span>{typeof row.quantity === "number" ? row.quantity : "N/A"}</span>
+      ),
       className: "min-w-[100px]",
     },
-
     {
       header: "Rate",
-      accessor: "price",
+      accessor: (row) => (
+        <span>{typeof row.price === "number" ? `₹${row.price}` : "N/A"}</span>
+      ),
       className: "min-w-[100px]",
     },
     {
       header: "Total",
-      accessor: (row: any) => (
+      accessor: (row) => (
         <h5 className="font-bold text-green-600 dark:text-white">
-          ₹{row.totalStockPrice}
+          {typeof row.totalStockPrice === "number"
+            ? `₹${row.totalStockPrice}`
+            : "N/A"}
         </h5>
       ),
       className: "min-w-[100px]",
     },
     {
       header: "Actions",
-      accessor: (row: any) => (
+      accessor: (row) => (
         <div className="flex items-center space-x-3.5">
           <Icons.editIcon
             className="w-5 cursor-pointer"
@@ -99,7 +121,7 @@ export default function MerchantWiseStockList({ params }: { params: any }) {
     },
   ];
 
-  const filteredData = data?.data.filter((row: any) =>
+  const filteredData = data?.data?.filter((row: any) =>
     row.name.toLowerCase().includes(searchStock.toLowerCase()),
   );
 

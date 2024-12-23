@@ -50,9 +50,9 @@ export default function AddUpdateMerchant({
   useEffect(() => {
     if (objMerchant) {
       reset({
-        name: objMerchant.name || "",
-        mobile: objMerchant.mobile || "",
-        address: objMerchant.address || "",
+        name: objMerchant?.name || "",
+        mobile: objMerchant?.mobile || "",
+        address: objMerchant?.address || "",
       });
     }
   }, [objMerchant, reset]);

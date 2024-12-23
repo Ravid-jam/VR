@@ -24,7 +24,7 @@ export default function AddUpdateEmployeeWork(
   headingName?: string,
 ) {
   const { id } = useParams();
-
+  console.log(objEmployeeWork.objEmployeeWork);
   const {
     register,
     handleSubmit,
@@ -39,22 +39,24 @@ export default function AddUpdateEmployeeWork(
 
   const router = useRouter();
   useEffect(() => {
-    if (objEmployeeWork) {
+    if (objEmployeeWork?.objEmployeeWork) {
       reset({
-        itemName: objEmployeeWork.itemName || "",
-        itemPrice: objEmployeeWork.itemPrice || "",
-        quantity: objEmployeeWork.quantity || "",
+        itemName: objEmployeeWork?.objEmployeeWork?.itemName || "",
+        itemPrice: objEmployeeWork?.objEmployeeWork?.itemPrice || "",
+        quantity: objEmployeeWork?.objEmployeeWork?.quantity || "",
       });
     }
   }, [objEmployeeWork, reset]);
 
   const onSubmit = async (data: any) => {
     try {
-      if (updateId) {
-        const res = await updateEmployeeWork(updateId, data);
+      if (objEmployeeWork.updateId) {
+        const res = await updateEmployeeWork(objEmployeeWork.updateId, data);
         if (res?.data) {
           Toast.show("Work updated successfully", "success");
-          router.push(`/employee/${objEmployeeWork?.employeeId?._id}`);
+          router.push(
+            `/employee/${objEmployeeWork?.objEmployeeWork.employeeId?._id}`,
+          );
         } else {
           Toast.show("Something went wrong. Please try again!", "error");
         }
@@ -74,7 +76,7 @@ export default function AddUpdateEmployeeWork(
   return (
     <div>
       <h1 className="mb-3 block text-2xl font-bold text-black dark:text-white">
-        {headingName ? headingName : "Add work"}
+        {objEmployeeWork.headingName ? objEmployeeWork.headingName : "Add work"}
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-5.5 pt-4">

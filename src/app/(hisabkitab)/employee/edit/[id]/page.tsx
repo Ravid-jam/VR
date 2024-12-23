@@ -11,11 +11,14 @@ export default function Page() {
     queryFn: async () => await getEmployee(id.toString()),
   });
 
+  console.log(data?.data.employee);
+
   return (
     <div>
       <AddUpdateEmployee
         objEmployee={data?.data?.employee}
         id={id.toString()}
+        headingName={"Update Employee"}
       />
     </div>
   );

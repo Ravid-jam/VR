@@ -28,7 +28,7 @@ export default function Merchant() {
     queryKey: ["merchantList"],
     queryFn: async () => await merchantList(),
   });
-  const filteredData = data?.data.filter((item: IMerchant) =>
+  const filteredData = data?.data?.filter((item: IMerchant) =>
     item.name.toLowerCase().includes(searchMerchant.toLowerCase()),
   );
 

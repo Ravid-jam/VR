@@ -20,12 +20,11 @@ const schema = yup.object().shape({
   address: yup.string().required("Address is required"),
 });
 
-// type Props = {
-//   objEmployee?: Employee;
-//   id?: string;
-// };
-
-export default function CreateEmployee(objEmployee?: any, id?: string) {
+export default function CreateEmployee(
+  objEmployee?: any,
+  id?: string,
+  headingName?: string,
+) {
   const router = useRouter();
   const {
     register,
@@ -43,8 +42,8 @@ export default function CreateEmployee(objEmployee?: any, id?: string) {
 
   const onSubmit = async (data: any) => {
     try {
-      if (id) {
-        const res = await updateEmployee(id, data);
+      if (objEmployee.id) {
+        const res = await updateEmployee(objEmployee.id, data);
         if (res?.data) {
           Toast.show("Employee updated successfully", "success");
           router.push("/employee");
@@ -66,18 +65,18 @@ export default function CreateEmployee(objEmployee?: any, id?: string) {
   };
 
   useEffect(() => {
-    if (objEmployee) {
+    if (objEmployee?.objEmployee) {
       reset({
-        name: objEmployee.name || "",
-        mobile: objEmployee.mobile || "",
-        address: objEmployee.address || "",
+        name: objEmployee?.objEmployee?.name || "",
+        mobile: objEmployee?.objEmployee?.mobile || "",
+        address: objEmployee?.objEmployee?.address || "",
       });
     }
   }, [objEmployee, reset]);
   return (
     <div>
       <h1 className="mb-3 block text-2xl font-bold text-black dark:text-white">
-        Add Worker
+        {headingName ? headingName : "Add Worker"}
       </h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="flex flex-col gap-5.5 pt-4">

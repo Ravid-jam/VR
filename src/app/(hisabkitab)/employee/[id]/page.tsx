@@ -127,7 +127,6 @@ export default function Page({ params }: { params: any }) {
       setCurrentPage(newPage);
     }
   };
-
   return (
     <div>
       <div className="mb-2">
