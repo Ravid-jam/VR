@@ -106,15 +106,15 @@ export default function Employee() {
                   <div className="inline-flex items-center text-base font-semibold text-green-700 dark:text-white">
                     ₹{totalWorkHistoryPrice}
                   </div>
-                  <div className="flex gap-x-1">
+                  <div className="flex gap-x-3">
                     <Icons.editIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={() =>
                         router.push(`/employee/edit/${customer._id}`)
                       }
                     />
                     <Icons.deleteIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={async () => {
                         try {
                           Swal.fire({
@@ -149,7 +149,7 @@ export default function Employee() {
                       }}
                     />
                     <Icons.viewIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={() => router.push(`/employee/${customer._id}`)}
                     />
                   </div>

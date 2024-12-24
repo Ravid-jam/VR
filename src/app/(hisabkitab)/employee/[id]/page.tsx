@@ -67,11 +67,11 @@ export default function Page({ params }: { params: any }) {
       accessor: (row: any) => (
         <div className="flex items-center space-x-3.5">
           <Icons.editIcon
-            className="w-5 cursor-pointer"
+            className="w-6 cursor-pointer"
             onClick={() => router.push(`/employee/editWork/${row._id}`)}
           />
           <Icons.deleteIcon
-            className="w-5 cursor-pointer"
+            className="w-6 cursor-pointer"
             onClick={async () => {
               try {
                 Swal.fire({

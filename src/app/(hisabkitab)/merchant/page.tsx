@@ -88,13 +88,13 @@ export default function Merchant() {
                   <div className="inline-flex items-center text-base font-semibold text-green-700 dark:text-white">
                     ₹{item.totalStockPrice}
                   </div>
-                  <div className="flex gap-x-1">
+                  <div className="flex gap-x-3">
                     <Icons.editIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={() => router.push(`/merchant/edit/${item._id}`)}
                     />
                     <Icons.deleteIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={async () => {
                         try {
                           Swal.fire({
@@ -129,7 +129,7 @@ export default function Merchant() {
                       }}
                     />
                     <Icons.viewIcon
-                      className="w-5 cursor-pointer"
+                      className="w-6 cursor-pointer"
                       onClick={() =>
                         router.push(`/stocks/merchant/${item._id}`)
                       }

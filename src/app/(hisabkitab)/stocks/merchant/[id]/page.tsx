@@ -83,13 +83,13 @@ export default function MerchantWiseStockList({ params }: { params: any }) {
     {
       header: "Actions",
       accessor: (row) => (
-        <div className="flex items-center space-x-3.5">
+        <div className="flex items-center space-x-3">
           <Icons.editIcon
-            className="w-5 cursor-pointer"
+            className="w-6 cursor-pointer"
             onClick={() => router.push(`/stocks/edit/${row._id}`)}
           />
           <Icons.deleteIcon
-            className="w-5 cursor-pointer"
+            className="w-6 cursor-pointer"
             onClick={async () => {
               try {
                 Swal.fire({
