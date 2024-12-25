@@ -63,11 +63,11 @@ export default function SignIn() {
                   width={40}
                   height={40}
                 />
-                <span className="text-3xl font-bold text-black">VR</span>
+                <span className="text-3xl font-bold text-black">Dhanani</span>
               </div>
             </Link>
 
-            <p className="2xl:px-20">Start with VR Brothers</p>
+            <p className="2xl:px-20">Start with Dhanani Brothers</p>
 
             <span className="mt-15 inline-block">
               <Icons.loginImage />
@@ -85,14 +85,14 @@ export default function SignIn() {
                 width={40}
                 height={40}
               />
-              <span className="text-3xl font-bold text-black">VR</span>
+              <span className="text-3xl font-bold text-black">Dhanani</span>
             </div>
             <span className="mb-1.5  hidden font-medium sm:block">
               Start for free
             </span>
 
             <h2 className="mb-9 text-center text-2xl font-bold text-black dark:text-white sm:text-start sm:text-title-xl2">
-              Sign In to VR
+              Sign In to Dhanani
             </h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>

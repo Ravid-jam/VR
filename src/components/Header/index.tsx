@@ -60,7 +60,7 @@ const Header = (props: {
               src={"/images/logo/logo-icon.svg"}
               alt="Logo"
             />
-            <span className="text-2xl font-bold text-white">VR</span>
+            <span className="text-2xl font-bold text-white">Dhanani</span>
           </Link>
         </div>
 

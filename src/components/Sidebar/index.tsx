@@ -111,7 +111,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 priority
                 className="h-10"
               />
-              <span className="text-4xl font-medium text-white">VR</span>
+              <span className="text-4xl font-medium text-white">Dhanani</span>
             </div>
           </Link>
 
