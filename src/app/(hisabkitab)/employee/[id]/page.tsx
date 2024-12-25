@@ -3,7 +3,7 @@ import { Icons } from "@/common/icons";
 import SearchInput from "@/common/SearchInput";
 import Table from "@/common/Table";
 import { Toast } from "@/common/Toast";
-import { formatDate, formatToDate } from "@/common/utils";
+import { formatDate } from "@/common/utils";
 import {
   deleteEmployeeWork,
   getEmployeeWorks,
@@ -16,15 +16,16 @@ import { IWorkHistory } from "../page";
 
 export default function Page({ params }: { params: any }) {
   const [searchWork, setSearchWork] = useState("");
-  const [selectedDate, setSelectedDate] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [selectedMonth, setSelectedMonth] = useState("");
   const itemsPerPage = 10;
-
+  console.log(selectedMonth);
   const router = useRouter();
   const { data, isFetching, isPending, isLoading, refetch } = useQuery({
     queryKey: ["merchantList"],
     queryFn: async () => await getEmployeeWorks(params.id.toString()),
   });
+
   const columns = [
     {
       header: "Design",
@@ -108,11 +109,20 @@ export default function Page({ params }: { params: any }) {
       ? work.itemName.toLowerCase().includes(searchWork.toLowerCase())
       : true;
 
-    const isDateMatch = selectedDate
-      ? formatToDate(work.date) === selectedDate
+    const isMonthMatch = selectedMonth
+      ? (() => {
+          const [selectedYear, selectedMonthValue] = selectedMonth.split("-");
+          const workDate = new Date(work.date);
+          const workYear = workDate.getFullYear();
+          const workMonth = String(workDate.getMonth() + 1).padStart(2, "0"); // Ensure 2-digit month
+          return (
+            selectedYear === String(workYear) &&
+            selectedMonthValue === workMonth
+          );
+        })()
       : true;
 
-    return isWorkMatch && isDateMatch;
+    return isWorkMatch && isMonthMatch;
   });
 
   const paginatedData = filterWorks?.slice(
@@ -145,11 +155,11 @@ export default function Page({ params }: { params: any }) {
             + Add Work
           </button>
         </div>
-        <div className="flex justify-end">
+        <div className="flex flex-row justify-end gap-5 overflow-scroll">
           <input
-            type="date"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)} // Set the selected date
+            type="month"
+            value={selectedMonth}
+            onChange={(e) => setSelectedMonth(e.target.value)}
             className="rounded-md border px-4 py-2"
           />
         </div>

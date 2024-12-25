@@ -34,7 +34,7 @@ export default function SignIn() {
       setLoading(true);
       const response: any = await login(data);
       if (response?.data.user) {
-        localStorage.setItem("admin", JSON.stringify(response.admin));
+        localStorage.setItem("admin", JSON.stringify(response.data.user));
         Cookies.set("refreshToken", response.data.token, { expires: 1 });
         localStorage.setItem("adminId", response.data.user._id);
         setLoading(false);

@@ -10,7 +10,7 @@ import Swal from "sweetalert2";
 const DropdownUser = () => {
   const router = useRouter();
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
+  const loginUser = JSON.parse(localStorage.getItem("admin") || "null");
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
@@ -19,15 +19,17 @@ const DropdownUser = () => {
         href="#"
       >
         <span className="hidden text-right lg:block">
-          <span className="block text-sm font-medium text-white">Pankaj</span>
-          <span className="block text-xs text-white">Embroidery Agent</span>
+          <span className="block text-sm font-medium text-white">
+            {loginUser?.name}
+          </span>
+          <span className="block text-xs text-white">{loginUser?.role}</span>
         </span>
 
         <span>
           <Image
             width={40}
             height={20}
-            src={"/images/user/admin.jpeg"}
+            src={"/images/user/user-14.avif"}
             alt="User"
             className="h-12 w-12 rounded-full object-fill"
           />

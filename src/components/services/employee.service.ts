@@ -31,6 +31,16 @@ export async function getEmployeeWorks(employeeId: string) {
   );
 }
 
+export async function getEmployeeWorksByMonth(
+  employeeId: string,
+  year: number,
+  month: number,
+) {
+  return await api.get(
+    `/employeeWork/view-monthly/${employeeId}/${year}/${month}`,
+  );
+}
+
 export async function getEmployee(id: string) {
   return await api.get(`/employee/get-employee/${id}`);
 }
